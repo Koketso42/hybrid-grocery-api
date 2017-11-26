@@ -30,6 +30,16 @@ createConnection().then(async connection => {
     // start express server
     app.listen(3000);
 
+
+    // create default system admin user
+    let admin = new User();
+    admin.userId = 1;
+    admin.username = 'admin';
+    admin.password = 'admin';
+    admin.role = 'admin';
+
+    await connection.manager.save(connection.manager.create(User, admin));
+
     console.log('Express server has started on port 3000. Open http://localhost:3000/users to see results');
 
 }).catch(error => console.log(error));
