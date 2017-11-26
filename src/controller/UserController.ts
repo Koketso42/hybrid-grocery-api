@@ -1,6 +1,6 @@
-import {getRepository} from "typeorm";
-import {NextFunction, Request, Response} from "express";
-import {User} from "../entity/User";
+import { getRepository } from 'typeorm';
+import { NextFunction, Request, Response } from 'express';
+import { User } from '../entity/User';
 
 export class UserController {
 
@@ -21,5 +21,4 @@ export class UserController {
     async remove(request: Request, response: Response, next: NextFunction) {
         await this.userRepository.removeById(request.params.id);
     }
-
 }
