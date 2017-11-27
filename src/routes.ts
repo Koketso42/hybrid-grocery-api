@@ -1,4 +1,5 @@
 import { UserController } from './controller/UserController';
+import { InventoryController } from './controller/InventoryController';
 
 export const Routes = [{
     method: 'get',
@@ -20,4 +21,49 @@ export const Routes = [{
     route: '/api/users/:id',
     controller: UserController,
     action: 'remove'
+}, {
+    method: 'get',
+    route: '/api/categories',
+    controller: InventoryController,
+    action: 'categories'
+}, {
+    method: 'get',
+    route: '/api/categories/:id',
+    controller: InventoryController,
+    action: 'getCategory'
+}, {
+    method: 'post',
+    route: '/api/categories',
+    controller: InventoryController,
+    action: 'addCategory'
+}, {
+    method: 'delete',
+    route: '/api/categories/:id',
+    controller: InventoryController,
+    action: 'removeCategory'
+}, {
+    method: 'get',
+    route: '/api/products',
+    controller: InventoryController,
+    action: 'products'
+}, {
+    method: 'get',
+    route: '/api/products/:id',
+    controller: InventoryController,
+    action: 'getProduct'
+}, {
+    method: 'post',
+    route: '/api/products',
+    controller: InventoryController,
+    action: 'addProduct'
+}, {
+    method: 'delete',
+    route: '/api/products/:id',
+    controller: InventoryController,
+    action: 'removeProduct'
+}, {
+    method: 'get',
+    route: '/api/catalogue',
+    controller: InventoryController,
+    action: 'catalogue'
 }];
