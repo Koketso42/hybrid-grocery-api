@@ -86,4 +86,9 @@ export const Routes = [{
     route: '/api/purchase',
     controller: InventoryController,
     action: 'purchase'
+}, {
+    method: 'get',
+    route: '/api/discounts',
+    controller: InventoryController,
+    action: 'discounts'
 }];

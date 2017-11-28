@@ -3,6 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import { ProductCategory } from './../entity/ProductCategory';
 import { Product } from './../entity/Product';
 import { Order } from '../entity/Order';
+import { Discount } from '../entity/Discount';
 
 export class InventoryController {
 
@@ -10,6 +11,7 @@ export class InventoryController {
     private productRepository = getRepository(Product);
     private orderRepository = getRepository(Order);
     private transactRepository = getRepository(Transaction);
+    private discountsRepository = getRepository(Discount);
 
     async categories(request: Request, response: Response, next: NextFunction) {
         return this.categoryRepository.find();
@@ -53,5 +55,9 @@ export class InventoryController {
     
     async purchase(request: Request, response: Response, next: NextFunction) {
 		return this.transactRepository.save(request.body);
-	}
+    }
+    
+    async discounts(request: Request, response: Response, next: NextFunction) {
+        return this.discountsRepository.find();
+    }
 }
