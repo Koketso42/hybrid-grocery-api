@@ -1,12 +1,15 @@
-import { getRepository } from 'typeorm';
+import { getRepository, Transaction } from 'typeorm';
 import { NextFunction, Request, Response } from 'express';
 import { ProductCategory } from './../entity/ProductCategory';
 import { Product } from './../entity/Product';
+import { Order } from '../entity/Order';
 
 export class InventoryController {
 
     private categoryRepository = getRepository(ProductCategory);
     private productRepository = getRepository(Product);
+    private orderRepository = getRepository(Order);
+    private transactRepository = getRepository(Transaction);
 
     async categories(request: Request, response: Response, next: NextFunction) {
         return this.categoryRepository.find();
@@ -43,4 +46,12 @@ export class InventoryController {
     async catalogue(request: Request, response: Response, next: NextFunction) {
         return this.categoryRepository.find({ relations: ['products'] });
     }
+
+    async order(request: Request, response: Response, next: NextFunction) {
+		return this.orderRepository.save(request.body);
+    }
+    
+    async purchase(request: Request, response: Response, next: NextFunction) {
+		return this.transactRepository.save(request.body);
+	}
 }

@@ -9,13 +9,23 @@ export const Routes = [{
 }, {
     method: 'get',
     route: '/api/users/:id',
-    controller: UserController,
+    controller: UserController, 
     action: 'one'
 }, {
     method: 'post',
     route: '/api/users',
     controller: UserController,
     action: 'save'
+}, {
+    method: 'post',
+    route: '/api/login',
+    controller: UserController,
+    action: 'login'
+}, {
+    method: 'post',
+    route: '/api/register',
+    controller: UserController,
+    action: 'register'
 }, {
     method: 'delete',
     route: '/api/users/:id',
@@ -66,4 +76,14 @@ export const Routes = [{
     route: '/api/catalogue',
     controller: InventoryController,
     action: 'catalogue'
+}, {
+    method: 'post',
+    route: '/api/order',
+    controller: InventoryController,
+    action: 'order'
+}, {
+    method: 'post',
+    route: '/api/purchase',
+    controller: InventoryController,
+    action: 'purchase'
 }];
