@@ -1,3 +1,4 @@
+import { Discount } from './entity/Discount';
 import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 import * as express from 'express';
@@ -45,6 +46,19 @@ createConnection()
 		admin.role = 'admin';
 
 		await connection.manager.save(connection.manager.create(User, admin));
+
+		let discount = new Discount();
+		discount.discountId = 1;
+		discount.discountPercentage = 0;
+		await connection.manager.save(connection.manager.create(Discount, discount));
+
+		discount.discountId = 2;
+		discount.discountPercentage = 0.25;
+		await connection.manager.save(connection.manager.create(Discount, discount));
+
+		discount.discountId = 3;
+		discount.discountPercentage = 0.5;
+		await connection.manager.save(connection.manager.create(Discount, discount));
 
 		let category = new ProductCategory();
 		category.categoryId = 1;
