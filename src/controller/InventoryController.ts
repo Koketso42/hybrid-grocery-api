@@ -10,7 +10,7 @@ export class InventoryController {
     private categoryRepository = getRepository(ProductCategory);
     private productRepository = getRepository(Product);
     private orderRepository = getRepository(Order);
-    private transactRepository = getRepository(Transaction);
+    // private transactRepository = getRepository(Transaction);
     private discountsRepository = getRepository(Discount);
 
     async categories(request: Request, response: Response, next: NextFunction) {
@@ -53,9 +53,9 @@ export class InventoryController {
 		return this.orderRepository.save(request.body);
     }
     
-    async purchase(request: Request, response: Response, next: NextFunction) {
+    /*async purchase(request: Request, response: Response, next: NextFunction) {
 		return this.transactRepository.save(request.body);
-    }
+    }*/
     
     async discounts(request: Request, response: Response, next: NextFunction) {
         return this.discountsRepository.find();

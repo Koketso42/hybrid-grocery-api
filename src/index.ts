@@ -42,7 +42,7 @@ createConnection()
 		let admin = new User();
 		admin.userId = 1;
 		admin.username = 'admin';
-		admin.password = 'admin';
+		admin.password = '@Admin42';
 		admin.role = 'admin';
 
 		await connection.manager.save(connection.manager.create(User, admin));
@@ -69,7 +69,7 @@ createConnection()
 		samsungCartridge.productName = 'SAMSUNG Black Laser Toner Cartridge';
 		samsungCartridge.shortDescription = 'Laser printer, YWellow, Clt-y404s';
 		samsungCartridge.imageURL = '';
-		samsungCartridge.price = 1299.99;
+		samsungCartridge.price = 299.99;
 		samsungCartridge.quantity = 10;
 		await connection.manager.save(connection.manager.create(Product, samsungCartridge));
 
@@ -79,7 +79,7 @@ createConnection()
 		canonCartridge.shortDescription =
 			'Cl-512 colour high yield cartridge, For use in mp250 mx320, 12 month guarantee';
 		canonCartridge.imageURL = '';
-		canonCartridge.price = 679.99;
+		canonCartridge.price = 79.99;
 		canonCartridge.quantity = 25;
 		await connection.manager.save(connection.manager.create(Product, canonCartridge));
 

@@ -20,7 +20,7 @@ or install google chrome's Allow-Control-Allow-Origin: * extension, `https://chr
 
 To build docker image
 
-1. docker `build -t hybrid-grocery-api` .
+1. `docker build -t hybrid-grocery-api` .
 
 To run docker container
 

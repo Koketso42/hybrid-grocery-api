@@ -1,3 +1,4 @@
+import { ResponseData } from './model/ResponseData';
 import { Account } from './../entity/Account';
 import { Address } from './../entity/Address';
 import { Person } from './../entity/Person';
@@ -7,9 +8,9 @@ import { User } from '../entity/User';
 
 export class UserController {
 	private userRepository = getRepository(User);
-    private personRepo = getRepository(Person);
-    private addressRepo = getRepository(Address);
-    private accountRepo = getRepository(Account);
+	private personRepo = getRepository(Person);
+	private addressRepo = getRepository(Address);
+	private accountRepo = getRepository(Account);
 
 	async all(request: Request, response: Response, next: NextFunction) {
 		return this.userRepository.find();
@@ -30,32 +31,48 @@ export class UserController {
 	async login(request: Request, response: Response, next: NextFunction) {
 		const username = request.body.username.toString();
 		const password = request.body.password.toString();
-		return this.userRepository
-			.findOne({ username: username, password: password })
-			.then((data) => {
-				return data;
-			})
-			.catch((err) => {
-				return err;
-			});
+
+		const user = await this.userRepository
+			.createQueryBuilder('user')
+			.where('user.username = :username', { username: username })
+			.andWhere('user.password = :password', { password: password })
+			.getOne();
+
+		let responseData = new ResponseData();
+		responseData.status = '200';
+		responseData.data = user;
+
+		if (user == undefined) {
+			responseData.status = '403';
+			responseData.data = { error: 'Authentication failed' };
+
+			return responseData;
+		}
+
+		return responseData;
 	}
 
 	async register(request: Request, response: Response, next: NextFunction) {
-        const user: User = request.body;
-        const person: Person = user.person;
-        const address: Address = person.address;
-        const bankAccount: Account = person.bankAccount;
+		const user: User = request.body;
+		const person: Person = user.person;
+		const address: Address = person.address;
+		const bankAccount: Account = person.bankAccount;
 		this.userRepository
 			.save(user)
 			.then(() => {
-                this.personRepo.save(person)
-                .then((data) => {
-                    this.addressRepo.save(address);
-                    this.accountRepo.save(bankAccount);
-                });
+				this.personRepo.save(person).then((data) => {
+					this.addressRepo.save(address);
+					this.accountRepo.save(bankAccount);
+				});
 			})
 			.catch((err) => {
 				console.log(err);
 			});
+
+		let responseData = new ResponseData();
+		responseData.status = '200';
+		responseData.data = {};
+
+		return responseData;
 	}
 }
