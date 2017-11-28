@@ -20,10 +20,10 @@ or install google chrome's Allow-Control-Allow-Origin: * extension, `https://chr
 
 To build docker image
 
-1. docker build -t express-typescript-api .
+1. docker `build -t hybrid-grocery-api` .
 
 To run docker container
 
-1. docker run -t --rm -p 3000:3000 -v $(pwd):/app express-typescript-api
+1. `docker run -t --rm -p 3000:3000 -v $(pwd):/app hybrid-grocery-api`
 
 App should be now accessible from the browser level at localhost:3000
