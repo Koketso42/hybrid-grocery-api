@@ -1,7 +1,7 @@
 # hybrid-grocery-api
 A basic shopping NodeJS+Typescript backend application, with TypeORM entity framework integrated in the application.
 
-# Example how to use Express and TypeORM with TypeScript
+# Steps to setup the project
 
 1. clone repository 
 2. run `npm i`
