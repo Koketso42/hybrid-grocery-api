@@ -57,17 +57,13 @@ export class UserController {
 		const person: Person = user.person;
 		const address: Address = person.address;
 		const bankAccount: Account = person.bankAccount;
-		this.userRepository
-			.save(user)
-			.then(() => {
-				this.personRepo.save(person).then((data) => {
-					this.addressRepo.save(address);
-					this.accountRepo.save(bankAccount);
-				});
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+
+		await this.accountRepo.save(bankAccount);
+		await this.addressRepo.save(address);
+		await this.personRepo.save(person);
+		await this.userRepository.save(user);
+
+		console.log(user);
 
 		let responseData = new ResponseData();
 		responseData.status = '200';

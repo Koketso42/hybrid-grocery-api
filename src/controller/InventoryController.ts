@@ -50,6 +50,7 @@ export class InventoryController {
     }
 
     async order(request: Request, response: Response, next: NextFunction) {
+        request.body.orderDate = new Date();
 		return this.orderRepository.save(request.body);
     }
     
